@@ -1,60 +1,49 @@
 # Bank Application
 
-Учебный pet-проект, реализованный на **Spring Boot**, моделирующий работу простого банковского приложения:  
-регистрация пользователей, открытие счетов, переводы между ними и конвертация валют.  
+A learning pet project built with Spring Boot, simulating a simple banking application:
+user registration, account management, money transfers, and currency conversion.
 
+⸻
+
+## Features
+	•	User registration and authentication
+	•	Creating and managing bank accounts
+	•	Depositing and withdrawing funds
+	•	Transfers between accounts
+	•	Currency conversion (USD ↔ EUR ↔ RUB)
+	•	Error handling via @ControllerAdvice and custom exceptions
+	•	API documentation through Swagger UI
+
+⸻
+
+## Technology Stack
+	•	Java 17
+	•	Spring Boot (Web, Security, Data JPA)
+	•	Hibernate
+	•	MySQL
+	•	Swagger / OpenAPI
+	•	Maven
+  
 ---
 
-## Функционал
-- Регистрация и авторизация пользователей  
-- Создание и управление банковскими счетами  
-- Пополнение и снятие средств  
-- Переводы между счетами  
-- Конвертация валют (USD ↔ EUR ↔ RUB)  
-- Обработка ошибок через `@ControllerAdvice` и кастомные исключения  
-- Документация API через **Swagger UI**  
+## Running the Project
 
----
-
-## Стек технологий
-- **Java 17**  
-- **Spring Boot** (Web, Security, Data JPA)  
-- **Hibernate**  
-- **MySQL**  
-- **Swagger / OpenAPI**  
-- **Maven**  
-
----
-
-## Архитектура проекта
-src/main/java/com/skyw/bankApp
-│── controller      → REST-контроллеры
-│── service         → бизнес-логика
-│── repository      → работа с БД
-│── dto             → Data Transfer Objects
-│── exception       → кастомные исключения
-│── config          → конфигурации (Security, Swagger)
-
----
-
-## Запуск проекта
-
-### 1. Клонировать репозиторий
+### 1. Clone the repository
 git clone https://github.com/your-username/bank-app.git
 cd bank-app
 
-### 2. Настроить базу данных
-Создать базу данных в MySQL:
+### 2. Configure the database
+Create a database in MySQL:
 ```CREATE DATABASE bank;```
 
-### 3. Создать .env файл
-В папке src/main/resources создать файл .env и указать креды:
+### 3. Create a .env file
+In src/main/resources, create a .env file and add your credentials:
 ```
 DB_USERNAME=root
 DB_PASSWORD=rootroot
 ```
 
-### 4. Проверить application.properties
+### 4. Check application.properties
 ```
 spring.application.name=bank
 server.port=8080
@@ -70,17 +59,18 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
-### 5. Запустить приложение
+### 5. Run the application
 ``` mvn spring-boot:run ```
 
 ### 6. Swagger UI
 
-После запуска документация будет доступна по адресу:
+After starting the application, the documentation will be available at:
 http://localhost:8080/swagger-ui.html
 
 
-## Примеры API
-Регистрация пользователя
+## API Examples
+
+User Registration
 ```
 POST /api/auth/register
 {
@@ -89,7 +79,7 @@ POST /api/auth/register
 }
 ```
 
-Перевод средств
+Transfer Funds
 ```
 POST /api/accounts/transfer
 {
@@ -100,4 +90,4 @@ POST /api/accounts/transfer
 ```
 
  ---
- Автор
+ Author: Artur (Telegram: @wskywalk)
