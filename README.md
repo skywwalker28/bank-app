@@ -39,8 +39,8 @@ Create a database in MySQL:
 ### 3. Create a .env file
 In src/main/resources, create a .env file and add your credentials:
 ```
-DB_USERNAME=root
-DB_PASSWORD=rootroot
+DB_USERNAME=username
+DB_PASSWORD=password
 ```
 
 ### 4. Check application.properties
