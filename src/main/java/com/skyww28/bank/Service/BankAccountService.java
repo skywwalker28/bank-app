@@ -1,5 +1,6 @@
 package com.skyww28.bank.Service;
 
+import com.skyww28.bank.DTO.BankAccountDTO;
 import com.skyww28.bank.Exception.AccountNotFoundException;
 import com.skyww28.bank.Exception.InactiveAccountException;
 import com.skyww28.bank.Exception.InsufficientFundsException;
@@ -12,8 +13,6 @@ import com.skyww28.bank.Repository.BankAccountTransactions;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.naming.InsufficientResourcesException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -43,8 +42,9 @@ public class BankAccountService {
     }
 
 
-    public List<BankAccount> getUserAccounts(User user) {
-        return bankAccountRepository.findByUserAndActiveTrue(user);
+    public List<BankAccountDTO> getUserAccounts(User user) {
+        List<BankAccount> accounts = bankAccountRepository.findByUserAndActiveTrue(user);
+        return BankAccountDTO.fromEntityList(accounts);
     }
 
 
