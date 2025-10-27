@@ -2,6 +2,9 @@ package com.skyww28.bank.DTO;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.skyww28.bank.Model.BankAccount;
 
 public class BankAccountDTO {
@@ -32,7 +35,11 @@ public class BankAccountDTO {
     }
 
 
-
+    public static List<BankAccountDTO> fromEntityList(List<BankAccount> accounts) {
+        return accounts.stream()
+                .map(BankAccountDTO::new)
+                .collect(Collectors.toList());
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
