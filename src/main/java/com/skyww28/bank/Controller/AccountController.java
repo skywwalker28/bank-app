@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -34,17 +35,20 @@ public class AccountController {
 
     @GetMapping
     @Operation(summary = "Get all accounts", description = "Returns all active accounts of the current user")
-    public List<BankAccount> getAccounts(@AuthenticationPrincipal UserDetails userDetails) {
-        User user = getCurrentUser(userDetails);
+    public List<BankAccountDTO> getAccounts(@AuthenticationPrincipal UserDetails userDetails) {
+
+        User user = userRepository.findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+
         return bankAccountService.getUserAccounts(user);
     }
 
     @PostMapping
     @Operation(summary = "Create account", description = "Create a new account for the current user")
-    public BankAccount createAccount(@AuthenticationPrincipal UserDetails userDetails, @RequestParam String currency) {
+    public BankAccountDTO createAccount(@AuthenticationPrincipal UserDetails userDetails, @RequestParam String currency) {
         User user = getCurrentUser(userDetails);
-
-        return bankAccountService.createAccount(user, currency);
+        BankAccount bankAccount = bankAccountService.createAccount(user, currency);
+        return new BankAccountDTO(bankAccount);
     }
 
     @PostMapping("/{accountId}/deposit")
