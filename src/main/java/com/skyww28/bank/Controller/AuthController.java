@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -25,13 +26,7 @@ public class AuthController {
     private UserRepository userRepository;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private BankAccountService bankAccountService;
-
-    @Autowired
-    private CurrencyConverterService currencyConverterService;
+    private PasswordEncoder encoder;
 
     @GetMapping
     @Operation(summary = "User dashboard", description = "Main page after login")
@@ -48,7 +43,9 @@ public class AuthController {
         if (userRepository.findByUsername(username).isPresent()) {
             throw new UserAlreadyExistxception("Username already exist");
         }
-        User newUser = new User(username, password, email);
+
+        String encodePassword = encoder.encode(password);
+        User newUser = new User(username, encodePassword, email);
         userRepository.save(newUser);
         return new UserDTO(username, email);
     }
