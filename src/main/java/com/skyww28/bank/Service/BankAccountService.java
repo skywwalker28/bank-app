@@ -138,7 +138,7 @@ public class BankAccountService {
                 fromDescription,
                 LocalDateTime.now(),
                 fromAccount,
-                null
+                toAccount
         );
         bankAccountTransactions.save(fromTransaction);
 
@@ -147,7 +147,7 @@ public class BankAccountService {
                 "TRANSFER",
                 toDescription,
                 LocalDateTime.now(),
-                null,
+                fromAccount,
                 toAccount
         );
         bankAccountTransactions.save(toTransaction);
