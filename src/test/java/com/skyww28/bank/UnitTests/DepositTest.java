@@ -1,10 +1,10 @@
 package com.skyww28.bank.UnitTests;
 
-import com.skyww28.bank.Model.BankAccount;
-import com.skyww28.bank.Model.User;
-import com.skyww28.bank.Repository.BankAccountRepository;
-import com.skyww28.bank.Repository.BankAccountTransactions;
-import com.skyww28.bank.Service.BankAccountService;
+import com.skyww28.bank.model.BankAccount;
+import com.skyww28.bank.model.User;
+import com.skyww28.bank.repository.BankAccountRepository;
+import com.skyww28.bank.repository.BankAccountTransactions;
+import com.skyww28.bank.service.BankAccountService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
